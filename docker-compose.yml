@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  python:
+    container_name: py_api
+    build:
+      context: docker/python
+      target: develop
+    volumes:
+      - './:/usr/api'
+    working_dir: '/usr/api'
+    command: [ '/bin/sh', '-c', 'tail -f /dev/null' ]
+    env_file:
+      - .env
+    ports:
+      - 8080:8080
+    restart: always
